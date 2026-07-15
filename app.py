@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 from telegramBot import sending_message
 import asyncio
 load_dotenv()
-channel_IDs = ["UCPokJ1HtDczTd0rRPMwMeWw", "UCQB9yZWLvcSNI9ruw74iF8Q","UCd4LWpxIFRnoXJB63WEc-vw",
-               "UC8F8MJyWevV2EzzLxZnSRLg", "UC5p0FTpOleZUc87YVJ8VX-g", "UCGW5zIEencf7p6IncKLFtuA", "UCFq4pOuTiZmfJyCxaYTT3Hg", "UCdYt25YVNOQET06LMlr54aA", "UCEHvaZ336u7TIsUQ2c6SAeQ"]
+channel_IDs = ["UCY1kMZp36IQSyNx_9h4mpCg", "UC9MGILXGrJmX30L1vE4hRpg"]
 API_KEY = os.getenv("API_KEY")
 FILENAME = "storingFile.txt"
 
