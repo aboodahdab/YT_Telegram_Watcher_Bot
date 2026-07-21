@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from telegramBot import sending_message
 import asyncio
 load_dotenv()
-channel_IDs = ["UCY1kMZp36IQSyNx_9h4mpCg", "UC9MGILXGrJmX30L1vE4hRpg"]
+channel_IDs = ["UCY1kMZp36IQSyNx_9h4mpCg", "UC513PdAP2-jWkJunTh5kXRw"]
 API_KEY = os.getenv("API_KEY")
 FILENAME = "storingFile.txt"
 
@@ -33,11 +33,13 @@ def add_the_id_to_the_link(id):
     return link
 
 
-def open_uploads_playlist(uploads, max_results):
+def open_uploads_playlist(uploads, max_results,customUrl,title):
     api_endpoint = f"https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId={uploads}&maxResults={max_results}&key={API_KEY}"
     print(api_endpoint)
     data = requests.get(api_endpoint)
+
     jsoned_data = data.json()
+    print(jsoned_data)
     items = jsoned_data["items"][0]
     contentDetails = items["contentDetails"]
     videoId = contentDetails["videoId"]
@@ -49,7 +51,7 @@ def open_uploads_playlist(uploads, max_results):
         return
     print("we're going to send the video for you!")
     link = add_the_id_to_the_link(videoId)
-    asyncio.run(sending_message(f"New video:\n{link}"))
+    asyncio.run(sending_message(f"New video from {title} ({customUrl}):\n{link}!"))
     write_to_file(videoId)
 
 
@@ -62,9 +64,13 @@ def get_uploads_playlist():
     for item in items:
 
         contentDetails = item["contentDetails"]
+        snippet = item["snippet"]
+        customUrl = snippet["customUrl"]
+        title = snippet["title"]
+
         uploads = contentDetails["relatedPlaylists"]["uploads"]
-        print(uploads)
-        open_uploads_playlist(uploads, 1)
+
+        open_uploads_playlist(uploads, 1, customUrl, title)
 
 
 # we need to use channels api to get uploads playlist and then get it's item using the playlistItems  api .
