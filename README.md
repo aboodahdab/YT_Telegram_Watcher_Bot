@@ -3,4 +3,4 @@
 ### If you want to see all the steps check out the ```TASK.md``` file.
 ### Answers are in the ```ANSWERS.md``` file.
 ## Shoutouts
-### [@WinterCore](https://github.com/WinterCore) For creating the task of this program.
+### [@WinterCore](https://github.com/WinterCore) For writing the task of this program.
